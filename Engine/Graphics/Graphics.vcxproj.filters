@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Direct3D\cConstantBuffer.d3d.cpp" />
+    <ClCompile Include="Direct3D\cRenderState.d3d.cpp" />
+    <ClCompile Include="Direct3D\cShader.d3d.cpp" />
+    <ClCompile Include="Direct3D\cVertexFormat.d3d.cpp" />
+    <ClCompile Include="Direct3D\Graphics.d3d.cpp" />
+    <ClCompile Include="Direct3D\sContext.d3d.cpp" />
+    <ClCompile Include="OpenGL\cConstantBuffer.gl.cpp" />
+    <ClCompile Include="OpenGL\cRenderState.gl.cpp" />
+    <ClCompile Include="OpenGL\cShader.gl.cpp" />
+    <ClCompile Include="OpenGL\cVertexFormat.gl.cpp" />
+    <ClCompile Include="OpenGL\Graphics.gl.cpp" />
+    <ClCompile Include="OpenGL\sContext.gl.cpp" />
+    <ClCompile Include="cConstantBuffer.cpp" />
+    <ClCompile Include="cRenderState.cpp" />
+    <ClCompile Include="cShader.cpp" />
+    <ClCompile Include="cVertexFormat.cpp" />
+    <ClCompile Include="sContext.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Direct3D\Includes.h" />
+    <ClInclude Include="OpenGL\Includes.h" />
+    <ClInclude Include="Windows\ExternalLibraries.win.h" />
+    <ClInclude Include="cConstantBuffer.h" />
+    <ClInclude Include="Configuration.h" />
+    <ClInclude Include="ConstantBufferFormats.h" />
+    <ClInclude Include="cRenderState.h" />
+    <ClInclude Include="cShader.h" />
+    <ClInclude Include="cVertexFormat.h" />
+    <ClInclude Include="Graphics.h" />
+    <ClInclude Include="sContext.h" />
+    <ClInclude Include="VertexFormats.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cRenderState.inl" />
+  </ItemGroup>
+</Project>
