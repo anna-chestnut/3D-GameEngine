@@ -49,6 +49,9 @@
     <ProjectReference Include="..\Time\Time.vcxproj">
       <Project>{674d3e72-cbd0-4ebd-bd0c-cf9326489421}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\UserInput\UserInput.vcxproj">
+      <Project>{193bb096-cd2c-48e8-8a28-99ecc2d019ad}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\UserOutput\UserOutput.vcxproj">
       <Project>{2bc54f48-d7bf-416b-9c09-e0f292ca4eb1}</Project>
     </ProjectReference>

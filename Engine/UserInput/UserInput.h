@@ -10,6 +10,12 @@
 
 #include <cstdint>
 
+#if defined( EAE6320_PLATFORM_WINDOWS )
+#include <Engine/Windows/Includes.h>
+#endif
+
+#include "Mouse.h"
+
 // Interface
 //==========
 
@@ -25,6 +31,8 @@ namespace eae6320
 		// For special keys use one of the KeyCodes enumerations below
 
 		bool IsKeyPressed( const uint_fast8_t i_keyCode );
+		int MouseWindowContainer(UINT i_message, WPARAM i_wParam, LPARAM i_lParam);
+		Mouse GetMouse();
 
 		namespace KeyCodes
 		{
@@ -68,8 +76,19 @@ namespace eae6320
 				F10 = 0x79,
 				F11 = 0x7a,
 				F12 = 0x7b,
+
+				W = 0x57,
+				A = 0x41,
+				S = 0x53,
+				D = 0x44,
+
+				Z = 0x5a,
 			};
 		}
+
+		//Mouse mouse;
+
+
 	}
 }
 

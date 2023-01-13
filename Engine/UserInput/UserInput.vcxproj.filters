@@ -5,6 +5,8 @@
     <ClInclude Include="Windows\ExternalLibraries.win.h">
       <Filter>Windows</Filter>
     </ClInclude>
+    <ClInclude Include="Mouse.h" />
+    <ClInclude Include="MouseEvent.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Windows">
@@ -13,6 +15,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Windows\UserInput.win.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows\Mouse.win.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows\MouseEvent.win.cpp">
       <Filter>Windows</Filter>
     </ClCompile>
   </ItemGroup>

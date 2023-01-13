@@ -272,6 +272,28 @@ NewAssetTypeInfo( "shaders",
 	}
 )
 
+
+-- Mesh Asset Type
+--------------------
+
+NewAssetTypeInfo( "meshes",
+	{
+		-- ConvertSourceRelativePathToBuiltRelativePath = function( i_sourceRelativePath )
+			-- -- Change the source file extension to the binary version
+			-- local relativeDirectory, file = i_sourceRelativePath:match( "(.-)([^/\\]+)$" )
+			-- local fileName, extensionWithPeriod = file:match( "([^%.]+)(.*)" )
+			-- -- The line below just puts the original pieces back together,
+			-- -- but you could change this to customize the way that you build assets
+			-- -- (you could, for example, use a different extension for binary shaders)
+			--return relativeDirectory .. fileName .. extensionWithPeriod
+		-- end,
+		GetBuilderRelativePath = function()
+			return "MeshBuilder.exe"
+		end,
+		
+	}
+)
+
 -- Local Function Definitions
 --===========================
 
@@ -371,7 +393,7 @@ local function BuildAsset( i_assetInfo )
 			-- The following line can be uncommented to see what command line is being executed
 			-- (this can be used, for example, to figure out what command arguments to provide Visual Studio
 			-- in order to debug a Builder)
---			print( commandLine )
+			print( commandLine )
 			local result, exitCode = ExecuteCommand( commandLine )
 			if result then
 				if exitCode == 0 then

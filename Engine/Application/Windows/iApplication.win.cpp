@@ -9,6 +9,7 @@
 #include <Engine/Logging/Logging.h>
 #include <Engine/ScopeGuard/cScopeGuard.h>
 #include <Engine/UserOutput/UserOutput.h>
+#include <Engine/UserInput/UserInput.h>
 #include <Engine/UserSettings/UserSettings.h>
 #include <Engine/Windows/Functions.h>
 
@@ -219,7 +220,7 @@ LRESULT CALLBACK eae6320::Application::iApplication::OnMessageReceivedFromWindow
 			// (e.g. the caption won't be displayed).
 			// Instead it is better to break instead of returning
 			// so that the window will behave like any standard window.
-//			return TRUE;
+			// return TRUE;
 		}
 		break;
 	// A window's nonclient area is being destroyed
@@ -255,6 +256,9 @@ LRESULT CALLBACK eae6320::Application::iApplication::OnMessageReceivedFromWindow
 		}
 		break;
 	}
+
+	// Need to add this line to read mouse input message
+	if (eae6320::UserInput::MouseWindowContainer(i_message, i_wParam, i_lParam) == 0) return 0;
 
 	// Pass any messages that weren't handled on to Windows
 	// so that this application's window behaves like any standard window

@@ -12,10 +12,14 @@
 
 #include <cstdint>
 #include <Engine/Results/Results.h>
+#include <Engine/Gameplay/GameObject.h>
+#include <Engine/Gameplay/Camera.h>
 
 #if defined( EAE6320_PLATFORM_WINDOWS )
 	#include <Engine/Windows/Includes.h>
 #endif
+
+#include "VertexFormats.h"
 
 // Interface
 //==========
@@ -35,6 +39,13 @@ namespace eae6320
 		// for the frame currently being submitted
 		void SubmitElapsedTime( const float i_elapsedSecondCount_systemTime, const float i_elapsedSecondCount_simulationTime );
 
+		// for user to submmit the background color of the next frame
+		void SubmitBackgroundColor(float *i_color);
+
+		// for user to submit gameobject
+		void SubmitGameObject(eae6320::Gameplay::GameObject& o_gameObject);
+		void SubmitCamera(Math::cMatrix_transformation i_transform_worldToCamera, Math::cMatrix_transformation i_transform_cameraToProjected);//eae6320::Gameplay::Camera& o_camera);
+				
 		// When the application is ready to submit data for a new frame
 		// it should call this before submitting anything
 		// (or, said another way, it is not safe to submit data for a new frame

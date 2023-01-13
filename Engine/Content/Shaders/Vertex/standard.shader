@@ -10,13 +10,13 @@
 
 #include <Shaders/shaders.inc>
 
-#if defined( EAE6320_PLATFORM_D3D )
-
 // Constant Buffers
 //=================
 
-cbuffer g_constantBuffer_frame : register( b0 )
+//layout( std140, binding = 0 ) uniform g_constantBuffer_frame
+DeclareConstantBuffer( g_constantBuffer_frame, 0 )
 {
+	
 	float4x4 g_transform_worldToCamera;
 	float4x4 g_transform_cameraToProjected;
 
@@ -26,9 +26,15 @@ cbuffer g_constantBuffer_frame : register( b0 )
 	float2 g_padding;
 };
 
+
+DeclareConstantBuffer( g_constantBuffer_drawCall, 2 )
+{
+  float4x4 g_transform_localToWorld;
+};
+
 // Entry Point
 //============
-
+#if defined( EAE6320_PLATFORM_D3D )
 void main(
 
 	// Input
@@ -48,46 +54,7 @@ void main(
 	out float4 o_vertexPosition_projected : SV_POSITION
 
 )
-{
-	// Transform the local vertex into world space
-	float4 vertexPosition_world;
-	{
-		// This will be done in a future assignment.
-		// For now, however, local space is treated as if it is the same as world space.
-		float4 vertexPosition_local = float4( i_vertexPosition_local, 1.0 );
-		vertexPosition_world = vertexPosition_local;
-	}
-	// Calculate the position of this vertex projected onto the display
-	{
-		// Transform the vertex from world space into camera space
-		float4 vertexPosition_camera = mul( g_transform_worldToCamera, vertexPosition_world );
-		// Project the vertex from camera space into projected space
-		o_vertexPosition_projected = mul( g_transform_cameraToProjected, vertexPosition_camera );
-	}
-}
-
 #elif defined( EAE6320_PLATFORM_GL )
-
-// Constant Buffers
-//=================
-
-layout( std140, binding = 0 ) uniform g_constantBuffer_frame
-{
-	mat4 g_transform_worldToCamera;
-	mat4 g_transform_cameraToProjected;
-
-	float g_elapsedSecondCount_systemTime;
-	float g_elapsedSecondCount_simulationTime;
-	// For vec4 alignment
-	vec2 g_padding;
-};
-
-// Input
-//======
-
-// The locations assigned are arbitrary
-// but must match the C calls to glVertexAttribPointer()
-
 // These values come from one of the VertexFormats::sVertex_mesh that the vertex buffer was filled with in C code
 layout( location = 0 ) in vec3 i_vertexPosition_local;
 
@@ -102,22 +69,32 @@ layout( location = 0 ) in vec3 i_vertexPosition_local;
 //============
 
 void main()
+#endif
 {
-	// Transform the local vertex into world space
-	vec4 vertexPosition_world;
+// Transform the local vertex into world space
+	float4 vertexPosition_world;
 	{
 		// This will be done in a future assignment.
 		// For now, however, local space is treated as if it is the same as world space.
-		vec4 vertexPosition_local = vec4( i_vertexPosition_local, 1.0 );
-		vertexPosition_world = vertexPosition_local;
+		float4 vertexPosition_local = float4( i_vertexPosition_local, 1.0 );
+		vertexPosition_world = mul(g_transform_localToWorld, vertexPosition_local);
 	}
 	// Calculate the position of this vertex projected onto the display
 	{
 		// Transform the vertex from world space into camera space
-		vec4 vertexPosition_camera = g_transform_worldToCamera * vertexPosition_world;
+		float4 vertexPosition_camera = mul( g_transform_worldToCamera, vertexPosition_world );
 		// Project the vertex from camera space into projected space
+#if defined( EAE6320_PLATFORM_D3D )
+		o_vertexPosition_projected = mul( g_transform_cameraToProjected, vertexPosition_camera );
+#elif defined( EAE6320_PLATFORM_GL )
 		gl_Position = g_transform_cameraToProjected * vertexPosition_camera;
+#endif
 	}
 }
 
-#endif
+
+// Entry Point
+//============
+
+
+

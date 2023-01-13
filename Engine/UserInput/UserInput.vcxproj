@@ -19,10 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Mouse.h" />
+    <ClInclude Include="MouseEvent.h" />
     <ClInclude Include="UserInput.h" />
     <ClInclude Include="Windows\ExternalLibraries.win.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Windows\Mouse.win.cpp" />
+    <ClCompile Include="Windows\MouseEvent.win.cpp" />
     <ClCompile Include="Windows\UserInput.win.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

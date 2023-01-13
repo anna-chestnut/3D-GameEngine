@@ -22,8 +22,9 @@
 
 #if defined( EAE6320_PLATFORM_WINDOWS )
 	#include <Engine/Windows/Includes.h>
-
-	#if defined( EAE6320_PLATFORM_GL )
+	#if defined( EAE6320_PLATFORM_D3D )
+		#include "Direct3D/Includes.h"
+	#elif defined( EAE6320_PLATFORM_GL )
 		#include "OpenGL/Includes.h"
 	#endif
 #endif
@@ -63,6 +64,12 @@ namespace eae6320
 			// that are rendered to in sequence,
 			// with a single one being currently displayed
 			IDXGISwapChain* swapChain = nullptr;
+
+			// In Direct3D "views" are objects that allow a texture to be used a particular way:
+			// A render target view allows a texture to have color rendered to it
+			ID3D11RenderTargetView* s_renderTargetView = nullptr;
+			// A depth/stencil view allows a texture to have depth rendered to it
+			ID3D11DepthStencilView* s_depthStencilView = nullptr;
 #elif defined( EAE6320_PLATFORM_GL )
 			// The device context and OpenGL rendering context are required to use OpenGL with Windows
 			// (i.e. they are Windows concepts and wouldn't be used on other platforms that use OpenGL)
@@ -88,6 +95,12 @@ namespace eae6320
 
 			// Implementation
 			//===============
+
+			void ClearBuffer(float* i_color);
+			void SwapBuffer();
+#if defined( EAE6320_PLATFORM_D3D )
+			eae6320::cResult InitializeViews(const unsigned int i_resolutionWidth, const unsigned int i_resolutionHeight);
+#endif
 
 		private:
 

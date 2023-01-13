@@ -5,19 +5,24 @@
     <ClCompile Include="Direct3D\cRenderState.d3d.cpp" />
     <ClCompile Include="Direct3D\cShader.d3d.cpp" />
     <ClCompile Include="Direct3D\cVertexFormat.d3d.cpp" />
-    <ClCompile Include="Direct3D\Graphics.d3d.cpp" />
     <ClCompile Include="Direct3D\sContext.d3d.cpp" />
     <ClCompile Include="OpenGL\cConstantBuffer.gl.cpp" />
     <ClCompile Include="OpenGL\cRenderState.gl.cpp" />
     <ClCompile Include="OpenGL\cShader.gl.cpp" />
     <ClCompile Include="OpenGL\cVertexFormat.gl.cpp" />
-    <ClCompile Include="OpenGL\Graphics.gl.cpp" />
     <ClCompile Include="OpenGL\sContext.gl.cpp" />
     <ClCompile Include="cConstantBuffer.cpp" />
     <ClCompile Include="cRenderState.cpp" />
     <ClCompile Include="cShader.cpp" />
     <ClCompile Include="cVertexFormat.cpp" />
     <ClCompile Include="sContext.cpp" />
+    <ClCompile Include="Direct3D\cMesh.d3d.cpp" />
+    <ClCompile Include="OpenGL\cMesh.gl.cpp" />
+    <ClCompile Include="cEffect.cpp" />
+    <ClCompile Include="OpenGL\cEffect.gl.cpp" />
+    <ClCompile Include="Direct3D\cEffect.d3d.cpp" />
+    <ClCompile Include="Graphics.cpp" />
+    <ClCompile Include="cMesh.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Direct3D\Includes.h" />
@@ -32,6 +37,8 @@
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="sContext.h" />
     <ClInclude Include="VertexFormats.h" />
+    <ClInclude Include="cMesh.h" />
+    <ClInclude Include="cEffect.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cRenderState.inl" />
